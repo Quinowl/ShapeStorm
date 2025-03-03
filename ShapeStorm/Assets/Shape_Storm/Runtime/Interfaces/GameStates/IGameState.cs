@@ -1,5 +1,4 @@
-public interface IGameState
-{
+public interface IGameState {
     void GameStateEnter();
     void GameStateUpdate();
     void GameStateFixedUpdate();

@@ -1,7 +1,6 @@
 using System;
 
-public class PlayingState : IGameState
-{
+public class PlayingState : IGameState {
     public static Action OnUpdate;
     public static Action OnFixed;
 
