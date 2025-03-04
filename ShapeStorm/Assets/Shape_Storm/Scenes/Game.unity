@@ -982,6 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 127618351}
+  <Configuration>k__BackingField: {fileID: 11400000, guid: 515bcb9e07ae74aa89c9fcb38330874c, type: 2}
 --- !u!1 &1484293291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,6 +1071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62750f6ee3f03434e89789858e7ad77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootPoint: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

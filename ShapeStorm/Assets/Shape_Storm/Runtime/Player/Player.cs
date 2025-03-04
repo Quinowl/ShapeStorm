@@ -4,8 +4,8 @@ using UnityEngine;
 public class Player : Entity {
 
     [SerializeField] private PlayerStateMachine stateMachine;
-
     public InputHandler InputHandler { get; private set; }
+    [field: SerializeField] public PlayerConfiguration Configuration { get; private set; }
 
     protected override void Awake() {
         base.Awake();
@@ -32,4 +32,6 @@ public class Player : Entity {
         base.FixedUpdateStep();
         stateMachine.PhysicsStep();
     }
+
+    public void Move(Vector3 _nextPosition) => transform.position = _nextPosition;
 }
