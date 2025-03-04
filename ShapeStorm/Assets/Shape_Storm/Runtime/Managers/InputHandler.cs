@@ -18,7 +18,7 @@ public class InputHandler : MonoBehaviour {
     }
 
     private void InitializeInputs() {
-        movementInputAction = playerInput.actions["Move"];
+        movementInputAction = playerInput.actions[Constants.Inputs.MOVE];
     }
 
     private void ReadInputs() {

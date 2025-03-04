@@ -22,6 +22,23 @@ public class PlayerStateMachine : MonoBehaviour {
         Player = _player;
     }
 
+    public void Step() {
+        if (CurrentState == null) return;
+        CurrentState.StateInputs();
+        CurrentState.CheckTransitions();
+        CurrentState.StateStep();
+    }
+
+    public void PhysicsStep() {
+        if (CurrentState == null) return;
+        CurrentState.StatePhysicsStep();
+    }
+
+    public void LateStep() {
+        if (CurrentState == null) return;
+        CurrentState.StateLateStep();
+    }
+
     public void SetState(Type _nextState) {
         PlayerState nextState = states.FirstOrDefault(s => s.GetType() == _nextState);
         if (nextState == null || nextState == CurrentState) return;

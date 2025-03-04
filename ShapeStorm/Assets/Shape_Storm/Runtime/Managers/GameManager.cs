@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour {
         currentGameState?.GameStateUpdate();
     }
 
+    void LateUpdate() {
+        currentGameState?.GameStateLateUpdate();
+    }
+
     private void FixedUpdate() {
         currentGameState?.GameStateFixedUpdate();
     }
