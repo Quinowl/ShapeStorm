@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class BaseProjectile : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+public abstract class BaseProjectile : Entity {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private float lifeTime;
+
+    public void SetBullet(float _lifeTime) {
+        lifeTime = _lifeTime;
     }
 }

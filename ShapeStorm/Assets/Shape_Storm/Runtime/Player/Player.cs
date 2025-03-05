@@ -1,15 +1,21 @@
-using System;
 using UnityEngine;
 
 public class Player : Entity {
 
+    [SerializeField] private InputReader inputReader;
     [SerializeField] private PlayerStateMachine stateMachine;
-    public InputHandler InputHandler { get; private set; }
     [field: SerializeField] public PlayerConfiguration Configuration { get; private set; }
+
+    public Vector2 MoveInput { get; private set; }
+    private void OnMoveInput(Vector2 _input) => MoveInput = _input;
+
+    protected override void OnEnable() {
+        base.OnEnable();
+        inputReader.OnMoveEvent += OnMoveInput;
+    }
 
     protected override void Awake() {
         base.Awake();
-        InputHandler = ServiceLocator.Instance.GetService<InputHandler>();
     }
 
     protected override void Start() {
@@ -31,6 +37,11 @@ public class Player : Entity {
     protected override void FixedUpdateStep() {
         base.FixedUpdateStep();
         stateMachine.PhysicsStep();
+    }
+
+    protected override void OnDisable() {
+        base.OnDisable();
+        inputReader.OnMoveEvent -= OnMoveInput;
     }
 
     public void Move(Vector3 _nextPosition) => transform.position = _nextPosition;
