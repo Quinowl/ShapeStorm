@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 12
   shootCadency: 0.5
+  projectilePrefab: {fileID: 5275528568525776784, guid: 32b6657bd3a7a4273b32ef4fef7c0fb3, type: 3}

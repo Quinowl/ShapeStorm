@@ -10,4 +10,6 @@ public class PlayerConfiguration : ScriptableObject {
     [Header("Shoot fields")]
     [SerializeField] private float shootCadency = 0.5f;
     public float ShootCadency => shootCadency;
+    [SerializeField] private BaseProjectile projectilePrefab;
+    public BaseProjectile ProjectilePrefab => projectilePrefab;
 }
