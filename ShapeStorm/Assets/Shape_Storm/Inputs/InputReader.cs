@@ -33,7 +33,6 @@ public class InputReader : ScriptableObject {
             moveAction.canceled += OnMove;
 
             shootAction.started += OnShoot;
-            shootAction.performed += OnShoot;
             shootAction.canceled += OnShoot;
         }
         else {
@@ -42,7 +41,6 @@ public class InputReader : ScriptableObject {
             moveAction.canceled -= OnMove;
 
             shootAction.started -= OnShoot;
-            shootAction.performed -= OnShoot;
             shootAction.canceled -= OnShoot;
         }
     }

@@ -6,12 +6,26 @@ public class Player : Entity {
     [SerializeField] private PlayerStateMachine stateMachine;
     [field: SerializeField] public PlayerConfiguration Configuration { get; private set; }
 
+    #region Inputs
     public Vector2 MoveInput { get; private set; }
     private void OnMoveInput(Vector2 _input) => MoveInput = _input;
+    public bool ShootInput { get; private set; }
+    private void OnShootInput() {
+        ShootInput = true;
+        ShootInputReleased = false;
+    }
+    public bool ShootInputReleased { get; private set; }
+    private void OnShootInputCancelled() {
+        ShootInput = false;
+        ShootInputReleased = true;
+    }
+    #endregion
 
     protected override void OnEnable() {
         base.OnEnable();
         inputReader.OnMoveEvent += OnMoveInput;
+        inputReader.OnShootEvent += OnShootInput;
+        inputReader.OnShootCancelledEvent += OnShootInputCancelled;
     }
 
     protected override void Awake() {
