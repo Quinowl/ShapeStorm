@@ -37,7 +37,7 @@ public class PlayerShootState : PlayerMovementState {
 
     private void Shoot() {
         BaseProjectile projectile = projectilesPool.Get();
-        projectile.SetBullet(12f,
+        projectile.SetBullet(25f,
                             3f,
                             3f,
                             shootPoint.position,

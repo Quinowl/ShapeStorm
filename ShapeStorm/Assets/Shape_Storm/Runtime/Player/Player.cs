@@ -19,6 +19,8 @@ public class Player : Entity {
         ShootInput = false;
         ShootInputReleased = true;
     }
+    public bool IsGamepad { get; private set; }
+    private void SetIsGamepad(bool _isGamepad) => IsGamepad = _isGamepad;
     #endregion
 
     protected override void OnEnable() {
@@ -26,6 +28,7 @@ public class Player : Entity {
         inputReader.OnMoveEvent += OnMoveInput;
         inputReader.OnShootEvent += OnShootInput;
         inputReader.OnShootCancelledEvent += OnShootInputCancelled;
+        InputReader.OnInputDeviceChanged += SetIsGamepad;
     }
 
     protected override void Awake() {
@@ -41,6 +44,7 @@ public class Player : Entity {
     protected override void UpdateStep() {
         base.UpdateStep();
         stateMachine.Step();
+        if (!IsGamepad) RotateTowardsMouse();
     }
 
     protected override void LateUpdateStep() {
@@ -56,7 +60,23 @@ public class Player : Entity {
     protected override void OnDisable() {
         base.OnDisable();
         inputReader.OnMoveEvent -= OnMoveInput;
+        inputReader.OnShootEvent -= OnShootInput;
+        inputReader.OnShootCancelledEvent -= OnShootInputCancelled;
+        InputReader.OnInputDeviceChanged -= SetIsGamepad;
     }
 
     public void Move(Vector3 _nextPosition) => transform.position = _nextPosition;
+
+    private void RotateTowardsMouse() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, LayerMask.GetMask("Ground"))) {
+            Vector3 targetPosition = hitInfo.point;
+            targetPosition.y = transform.position.y;
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            if (direction != Vector3.zero) {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = lookRotation;
+            }
+        }
+    }
 }
