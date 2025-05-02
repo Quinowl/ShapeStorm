@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,23 +7,17 @@ public class ShakeComponent : MonoBehaviour
     [SerializeField, Tooltip("Objeto que sufrirá el shake")] private Transform shakeObject;
     [SerializeField] private ShakeConfiguration _shakeConfiguration;
     private Vector3 _startPosition;
-    
-    public bool IsShaking { get; private set; }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O)) Activate();
-    }
+    private bool _isShaking;
 
     public void Activate()
     {
         _startPosition = transform.localPosition;
-        if (!IsShaking) StartCoroutine(ShakeCoroutine());
+        if (!_isShaking) StartCoroutine(ShakeCoroutine());
     }
 
     private IEnumerator ShakeCoroutine()
     {
-        IsShaking = true;
+        _isShaking = true;
         float timeElapsed = 0f;
         while (timeElapsed < _shakeConfiguration.Duration)
         {
@@ -34,6 +27,6 @@ public class ShakeComponent : MonoBehaviour
             yield return null;
         }
         transform.localPosition = _startPosition;
-        IsShaking = false;
+        _isShaking = false;
     }
 }
