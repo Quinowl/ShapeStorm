@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class GameInstaller : MonoBehaviour {
-
-    private void OnEnable() {
+public class GameInstaller : MonoBehaviour 
+{
+    private void OnEnable() 
+    {
 
     }
 
-    void OnDisable() {
+    void OnDisable() 
+    {
 
     }
 }

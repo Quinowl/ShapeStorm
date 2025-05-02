@@ -1,12 +1,16 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-    private IGameState currentGameState;
+public class GameManager : MonoBehaviour 
+{
+    
+    private IGameState _currentGameState;
 
     public static GameManager Instance { get; private set; }
 
-    private void Awake() {
-        if (!Instance) {
+    private void Awake() 
+    {
+        if (!Instance) 
+        {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -14,22 +18,26 @@ public class GameManager : MonoBehaviour {
         SetGameState(new PlayingState());
     }
 
-    private void Update() {
-        currentGameState?.GameStateUpdate();
+    private void Update() 
+    {
+        _currentGameState?.GameStateUpdate();
     }
 
-    void LateUpdate() {
-        currentGameState?.GameStateLateUpdate();
+    void LateUpdate() 
+    {
+        _currentGameState?.GameStateLateUpdate();
     }
 
-    private void FixedUpdate() {
-        currentGameState?.GameStateFixedUpdate();
+    private void FixedUpdate() 
+    {
+        _currentGameState?.GameStateFixedUpdate();
     }
 
-    public void SetGameState(IGameState _nextGameState) {
-        if (_nextGameState == currentGameState) return;
-        currentGameState?.GameStateExit();
-        currentGameState = _nextGameState;
-        currentGameState?.GameStateEnter();
+    public void SetGameState(IGameState _nextGameState) 
+    {
+        if (_nextGameState == _currentGameState) return;
+        _currentGameState?.GameStateExit();
+        _currentGameState = _nextGameState;
+        _currentGameState?.GameStateEnter();
     }
 }

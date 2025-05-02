@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class PlayerShootState : PlayerMovementState {
+public class PlayerShootState : PlayerMovementState 
+{
 
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Transform projectilesPoolParent;
@@ -8,26 +9,33 @@ public class PlayerShootState : PlayerMovementState {
     private bool canShoot = true;
     private float shootTimer = 0f;
 
-    public override void StateEnter() {
+    public override void StateEnter() 
+    {
         base.StateEnter();
-        if (projectilesPool == null) {
+        if (projectilesPool == null) 
+        {
             projectilesPool = new ObjectPool<BaseProjectile>(stateMachine.Player.Configuration.ProjectilePrefab, 10, projectilesPoolParent);
         }
     }
 
-    public override void CheckTransitions() {
-        if (stateMachine.Player.ShootInputReleased) {
+    public override void CheckTransitions() 
+    {
+        if (stateMachine.Player.ShootInputReleased) 
+        {
             stateMachine.SetState(stateMachine.Player.MoveInput == Vector2.zero ? typeof(PlayerIdleState) : typeof(PlayerMovementState));
         }
     }
 
-    public override void StateStep() {
+    public override void StateStep() 
+    {
         base.StateStep();
         HandleShooting();
     }
 
-    private void HandleShooting() {
-        if (!canShoot) {
+    private void HandleShooting() 
+    {
+        if (!canShoot) 
+        {
             shootTimer -= Time.deltaTime;
             if (shootTimer <= 0f) canShoot = true;
             return;

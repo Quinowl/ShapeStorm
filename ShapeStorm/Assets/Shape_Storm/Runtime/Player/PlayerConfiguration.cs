@@ -1,8 +1,8 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Configurations/PlayerConfiguration")]
-public class PlayerConfiguration : ScriptableObject {
-
+public class PlayerConfiguration : ScriptableObject 
+{
     [Header("Movement fields")]
     [SerializeField] private float speed = 3f;
     public float Speed => speed;

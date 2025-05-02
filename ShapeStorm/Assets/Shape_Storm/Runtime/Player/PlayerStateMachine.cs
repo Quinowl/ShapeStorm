@@ -2,15 +2,18 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerStateMachine : MonoBehaviour {
+public class PlayerStateMachine : MonoBehaviour 
+{
 
     [SerializeField] private PlayerState[] states;
 
     public PlayerState CurrentState { get; private set; }
     public Player Player { get; private set; }
 
-    public void Initialize() {
-        if (states == null || states.Length == 0) {
+    public void Initialize() 
+    {
+        if (states == null || states.Length == 0) 
+        {
             Debug.LogWarning("No states assigned.");
             return;
         }
@@ -18,28 +21,33 @@ public class PlayerStateMachine : MonoBehaviour {
         SetState(states[0].GetType());
     }
 
-    public void Configure(Player _player) {
+    public void Configure(Player _player) 
+    {
         Player = _player;
     }
 
-    public void Step() {
+    public void Step() 
+    {
         if (CurrentState == null) return;
         CurrentState.StateInputs();
         CurrentState.CheckTransitions();
         CurrentState.StateStep();
     }
 
-    public void PhysicsStep() {
+    public void PhysicsStep() 
+    {
         if (CurrentState == null) return;
         CurrentState.StatePhysicsStep();
     }
 
-    public void LateStep() {
+    public void LateStep() 
+    {
         if (CurrentState == null) return;
         CurrentState.StateLateStep();
     }
 
-    public void SetState(Type _nextState) {
+    public void SetState(Type _nextState) 
+    {
         PlayerState nextState = states.FirstOrDefault(s => s.GetType() == _nextState);
         if (nextState == null || nextState == CurrentState) return;
         CurrentState?.StateExit();

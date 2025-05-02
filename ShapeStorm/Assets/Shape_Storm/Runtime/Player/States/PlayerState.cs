@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public abstract class PlayerState : MonoBehaviour {
+public abstract class PlayerState : MonoBehaviour 
+{
     protected PlayerStateMachine stateMachine;
-    public void Configure(PlayerStateMachine _stateMachine) {
+    public void Configure(PlayerStateMachine _stateMachine) 
+    {
         stateMachine = _stateMachine;
     }
     public abstract void StateInputs();

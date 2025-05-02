@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class Player : Entity {
-
+public class Player : Entity 
+{
     [SerializeField] private InputReader inputReader;
     [SerializeField] private PlayerStateMachine stateMachine;
     [field: SerializeField] public PlayerConfiguration Configuration { get; private set; }
@@ -23,7 +23,8 @@ public class Player : Entity {
     private void SetIsGamepad(bool _isGamepad) => IsGamepad = _isGamepad;
     #endregion
 
-    protected override void OnEnable() {
+    protected override void OnEnable() 
+    {
         base.OnEnable();
         inputReader.OnMoveEvent += OnMoveInput;
         inputReader.OnShootEvent += OnShootInput;
@@ -31,33 +32,39 @@ public class Player : Entity {
         InputReader.OnInputDeviceChanged += SetIsGamepad;
     }
 
-    protected override void Awake() {
+    protected override void Awake() 
+    {
         base.Awake();
     }
 
-    protected override void Start() {
+    protected override void Start() 
+    {
         base.Start();
         stateMachine.Configure(this);
         stateMachine.Initialize();
     }
 
-    protected override void UpdateStep() {
+    protected override void UpdateStep() 
+    {
         base.UpdateStep();
         stateMachine.Step();
         if (!IsGamepad) RotateTowardsMouse();
     }
 
-    protected override void LateUpdateStep() {
+    protected override void LateUpdateStep() 
+    {
         base.LateUpdateStep();
         stateMachine.LateStep();
     }
 
-    protected override void FixedUpdateStep() {
+    protected override void FixedUpdateStep() 
+    {
         base.FixedUpdateStep();
         stateMachine.PhysicsStep();
     }
 
-    protected override void OnDisable() {
+    protected override void OnDisable() 
+    {
         base.OnDisable();
         inputReader.OnMoveEvent -= OnMoveInput;
         inputReader.OnShootEvent -= OnShootInput;
@@ -67,9 +74,11 @@ public class Player : Entity {
 
     public void Move(Vector3 _nextPosition) => transform.position = _nextPosition;
 
-    private void RotateTowardsMouse() {
+    private void RotateTowardsMouse() 
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, LayerMask.GetMask("Ground"))) {
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, LayerMask.GetMask("Ground"))) 
+        {
             Vector3 targetPosition = hitInfo.point;
             targetPosition.y = transform.position.y;
             Vector3 direction = (targetPosition - transform.position).normalized;
