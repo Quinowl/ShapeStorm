@@ -20,6 +20,6 @@ public class PlayerMovementState : PlayerState
     {
         _direction.Normalize();
         Vector3 motion = new Vector3(_direction.x, 0f, _direction.y);
-        stateMachine.Player.Move(stateMachine.Player.transform.position + motion * stateMachine.Player.Configuration.Speed * Time.deltaTime);
+        stateMachine.Player.Move(stateMachine.Player.transform.position + motion * (stateMachine.Player.Configuration.Speed * Time.deltaTime));
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Configurations/PlayerConfiguration")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Configurations/Player Configuration")]
 public class PlayerConfiguration : ScriptableObject 
 {
     [Header("Movement fields")]

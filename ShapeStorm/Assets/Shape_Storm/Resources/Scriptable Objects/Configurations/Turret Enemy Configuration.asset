@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5176702c7514a4c6a8fb3edc25dd2a49, type: 3}
-  m_Name: Player Stats
+  m_Script: {fileID: 11500000, guid: 3e268d6d684674977ad3cff660b7bf84, type: 3}
+  m_Name: Turret Enemy Configuration
   m_EditorClassIdentifier: 
-  speed: 12
-  shootCadency: 0.2
-  projectilePrefab: {fileID: 5275528568525776784, guid: 32b6657bd3a7a4273b32ef4fef7c0fb3, type: 3}
+  shootCadency: 0.1
+  projectilePrefab: {fileID: 0}
