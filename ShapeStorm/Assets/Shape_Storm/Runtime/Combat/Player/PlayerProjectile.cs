@@ -9,7 +9,6 @@ public class PlayerProjectile : BaseProjectile
             damageable.TakeDamage(_damage);
         }
         if (other.TryGetComponent(out NonDestroyableEnemyProjectile _)) return;
-        // Si colisiona con balas del enemigo que no son destruibles, se hace return
         _destroyAction?.Invoke();
     }
 }
