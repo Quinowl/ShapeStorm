@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class GameInstaller : MonoBehaviour 
+public class GameInstaller : MonoBehaviour
 {
-    private void OnEnable() 
-    {
+    [SerializeField] private PoolService _poolService;
 
+    private void OnEnable()
+    {
+        _poolService.Initialize();
+        ServiceLocator.Instance.RegisterService(_poolService);
     }
 
-    void OnDisable() 
+    void OnDisable()
     {
-
+        ServiceLocator.Instance.UnregisterService<PoolService>();
     }
 }
