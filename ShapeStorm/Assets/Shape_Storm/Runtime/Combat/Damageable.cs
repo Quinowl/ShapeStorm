@@ -19,7 +19,7 @@ public abstract class Damageable : MonoBehaviour
 
     protected virtual void DamageEffects()
     {
-
+        _shakeComponent.Activate();
     }
 
     protected virtual void DieEffects() { }

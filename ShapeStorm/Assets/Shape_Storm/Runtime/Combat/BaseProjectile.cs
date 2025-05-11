@@ -3,10 +3,14 @@ using UnityEngine;
 
 public abstract class BaseProjectile : Entity
 {
+    [SerializeField] protected Rigidbody _rb;
+
     protected float _speed;
-    private float _damage;
-    private float _lifeTime;
-    private Action _destroyAction;
+    protected int _damage;
+    protected float _lifeTime;
+    protected Action _destroyAction;
+
+    private float _enabledTime;
 
     protected override void OnEnable()
     {
@@ -16,15 +20,10 @@ public abstract class BaseProjectile : Entity
     protected override void UpdateStep()
     {
         base.UpdateStep();
-        Movement();
+        if (Time.time >= _lifeTime + _enabledTime) _destroyAction?.Invoke();
     }
 
-    protected virtual void Movement()
-    {
-        transform.position += transform.forward * _speed * Time.deltaTime;
-    }
-
-    public virtual void SetBullet(float _speed, float _damage, float _lifeTime, Vector3 _position, Quaternion _rotation, Action _destroyAction)
+    public virtual void SetBullet(float _speed, int _damage, float _lifeTime, Vector3 _position, Quaternion _rotation, Action _destroyAction)
     {
         this._speed = _speed;
         this._damage = _damage;
@@ -32,5 +31,7 @@ public abstract class BaseProjectile : Entity
         transform.position = _position;
         transform.rotation = _rotation;
         this._destroyAction = _destroyAction;
+        _rb.linearVelocity = transform.forward * _speed;
+        _enabledTime = Time.time;
     }
 }

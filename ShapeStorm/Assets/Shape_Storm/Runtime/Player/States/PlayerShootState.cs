@@ -44,7 +44,7 @@ public class PlayerShootState : PlayerMovementState
         PlayerProjectile projectile = _poolService.PlayerProjectiles.Get();
         //TODO: Arreglar este hardcodeo.
         projectile.SetBullet(25f,
-                            3f,
+                            3,
                             3f,
                             shootPoint.position,
                             shootPoint.rotation,
