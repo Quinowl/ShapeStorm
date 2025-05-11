@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Damageable : MonoBehaviour 
+public abstract class Damageable : MonoBehaviour
 {
     [SerializeField] protected ShakeComponent _shakeComponent;
     protected int _currentHealth;
@@ -19,8 +19,8 @@ public abstract class Damageable : MonoBehaviour
 
     protected virtual void DamageEffects()
     {
-        
+
     }
-    
+
     protected virtual void DieEffects() { }
 }

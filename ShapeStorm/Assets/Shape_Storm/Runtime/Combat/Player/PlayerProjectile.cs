@@ -1,5 +1,6 @@
 using UnityEngine;
 
-public class PlayerProjectile : BaseProjectile {
+public class PlayerProjectile : BaseProjectile
+{
 
 }
