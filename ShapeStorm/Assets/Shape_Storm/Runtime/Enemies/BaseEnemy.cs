@@ -1,12 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class BaseEnemy : Entity
 {
-    [SerializeField] private BaseEnemyConfiguration _configuration;
+    [SerializeField] protected BaseEnemyConfiguration _configuration;
     [SerializeField] private Transform[] _shootPoints;
     [SerializeField] private Transform _projectilesPoolParent;
 
+    protected bool _canShoot;
+
     private PoolService _poolService;
+    private Coroutine _shootCandencyCoroutine;
 
     protected override void Awake()
     {
@@ -17,11 +21,17 @@ public abstract class BaseEnemy : Entity
     protected override void UpdateStep()
     {
         base.UpdateStep();
+        TryShoot();
     }
 
     protected virtual void TryShoot()
     {
-
+        if (_canShoot)
+        {
+            Shoot();
+            if (_shootCandencyCoroutine != null) StopCoroutine(_shootCandencyCoroutine);
+            _shootCandencyCoroutine = StartCoroutine(StartShootCadencyCoroutine());
+        }
     }
 
     protected virtual void Shoot()
@@ -49,5 +59,12 @@ public abstract class BaseEnemy : Entity
         return isDestroyable ?
             () => _poolService.DestroyableEnemyProjectiles.ReturnToPool(projectile as DestroyableEnemyProjectile) :
             () => _poolService.NonDestroyableEnemyProjectiles.ReturnToPool(projectile as NonDestroyableEnemyProjectile);
+    }
+
+    private IEnumerator StartShootCadencyCoroutine()
+    {
+        _canShoot = false;
+        yield return new WaitForSeconds(_configuration.shootCadency);
+        _canShoot = true;
     }
 }
