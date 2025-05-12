@@ -25,13 +25,17 @@ public class Player : Entity
     private void SetIsGamepad(bool _isGamepad) => IsGamepad = _isGamepad;
     #endregion
 
+    private CameraService _cameraService;
+
     protected override void OnEnable()
     {
         base.OnEnable();
+        _cameraService = ServiceLocator.Instance.GetService<CameraService>();
         _inputReader.OnMoveEvent += OnMoveInput;
         _inputReader.OnShootEvent += OnShootInput;
         _inputReader.OnShootCancelledEvent += OnShootInputCancelled;
         InputReader.OnInputDeviceChanged += SetIsGamepad;
+        _cameraService.SetTarget(transform);
     }
 
     protected override void Awake()
@@ -57,6 +61,7 @@ public class Player : Entity
     {
         base.LateUpdateStep();
         _stateMachine.LateStep();
+        _cameraService.FollowTarget();
     }
 
     protected override void FixedUpdateStep()
