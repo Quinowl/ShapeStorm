@@ -1461,6 +1461,7 @@ GameObject:
   - component: {fileID: 1090175698}
   - component: {fileID: 1090175701}
   - component: {fileID: 1090175700}
+  - component: {fileID: 1090175703}
   - component: {fileID: 1090175699}
   - component: {fileID: 1090175702}
   m_Layer: 0
@@ -1536,6 +1537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shakeComponent: {fileID: 1090175700}
+  _colorFlash: {fileID: 1090175703}
 --- !u!136 &1090175702
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1559,6 +1561,21 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1090175703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090175697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8b09b9a1824ff4887d793a2ae71412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  _flashDuration: 0.15
+  _renderer: {fileID: 693824287}
 --- !u!1 &1101935340
 GameObject:
   m_ObjectHideFlags: 0

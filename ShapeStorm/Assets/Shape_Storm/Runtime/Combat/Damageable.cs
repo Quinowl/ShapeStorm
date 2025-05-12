@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Damageable : MonoBehaviour
 {
     [SerializeField] protected ShakeComponent _shakeComponent;
+    [SerializeField] protected ColorFlashComponent _colorFlash;
     protected int _currentHealth;
 
     public virtual void TakeDamage(int damage)
@@ -20,6 +21,7 @@ public abstract class Damageable : MonoBehaviour
     protected virtual void DamageEffects()
     {
         _shakeComponent.Activate();
+        _colorFlash.Flash();
     }
 
     protected virtual void DieEffects() { }
