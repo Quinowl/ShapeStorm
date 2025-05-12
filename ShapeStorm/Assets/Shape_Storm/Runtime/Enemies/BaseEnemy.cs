@@ -5,16 +5,16 @@ public abstract class BaseEnemy : Entity
 {
     [SerializeField] protected BaseEnemyConfiguration _configuration;
     [SerializeField] private Transform[] _shootPoints;
-    [SerializeField] private Transform _projectilesPoolParent;
 
     protected bool _canShoot;
 
     private PoolService _poolService;
     private Coroutine _shootCandencyCoroutine;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
+        _canShoot = true;
         _poolService = ServiceLocator.Instance.GetService<PoolService>();
     }
 

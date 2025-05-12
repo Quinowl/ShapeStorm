@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e268d6d684674977ad3cff660b7bf84, type: 3}
   m_Name: Turret Enemy Configuration
   m_EditorClassIdentifier: 
-  shootCadency: 0.1
-  projectilePrefab: {fileID: 0}
+  shootCadency: 0.3
+  destroyableProjectileProb: 0.1
+  projectileSpeed: 5
+  projectileDamage: 3
+  projectileLifeTime: 5

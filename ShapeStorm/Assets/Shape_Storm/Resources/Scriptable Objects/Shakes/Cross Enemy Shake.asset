@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4f4ce3112b84517965b453e68151b0, type: 3}
   m_Name: Cross Enemy Shake
   m_EditorClassIdentifier: 
-  _duration: 0.2
-  _intensity: 0.15
+  duration: 0.15
+  intensity: 0.1

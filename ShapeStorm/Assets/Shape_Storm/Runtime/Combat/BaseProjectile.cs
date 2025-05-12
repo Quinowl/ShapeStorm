@@ -12,6 +12,12 @@ public abstract class BaseProjectile : Entity
 
     private float _enabledTime;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        if (!_rb) _rb = GetComponent<Rigidbody>();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
