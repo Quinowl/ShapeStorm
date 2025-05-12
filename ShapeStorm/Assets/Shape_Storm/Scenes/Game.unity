@@ -2119,8 +2119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced94c8c3c2974d6a85ff6b454e1f978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputReader: {fileID: 11400000, guid: d18e6aa9d229f498a9e66d102a06fa93, type: 2}
-  stateMachine: {fileID: 127618351}
+  _inputReader: {fileID: 11400000, guid: d18e6aa9d229f498a9e66d102a06fa93, type: 2}
+  _stateMachine: {fileID: 127618351}
   <Configuration>k__BackingField: {fileID: 11400000, guid: 515bcb9e07ae74aa89c9fcb38330874c, type: 2}
 --- !u!114 &1470340924
 MonoBehaviour:
@@ -2338,7 +2338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62750f6ee3f03434e89789858e7ad77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPoint: {fileID: 1310473546}
+  _shootPoint: {fileID: 1310473546}
 --- !u!1 &2123691644
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,10 +2387,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b480ca179779e49d89295c15448fe3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 986965371}
-  resumeButton: {fileID: 0}
-  settingsButton: {fileID: 0}
-  menuButton: {fileID: 0}
+  _canvasGroup: {fileID: 0}
+  _resumeButton: {fileID: 0}
+  _settingsButton: {fileID: 0}
+  _menuButton: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

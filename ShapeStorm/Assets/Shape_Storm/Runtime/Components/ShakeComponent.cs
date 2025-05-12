@@ -19,9 +19,9 @@ public class ShakeComponent : MonoBehaviour
     {
         _isShaking = true;
         float timeElapsed = 0f;
-        while (timeElapsed < _shakeConfiguration.Duration)
+        while (timeElapsed < _shakeConfiguration.duration)
         {
-            Vector3 randomOffset = Random.insideUnitSphere * _shakeConfiguration.Intensity;
+            Vector3 randomOffset = Random.insideUnitSphere * _shakeConfiguration.intensity;
             transform.localPosition = _startPosition + randomOffset;
             timeElapsed += Time.deltaTime;
             yield return null;

@@ -1,21 +1,23 @@
 using UnityEngine;
 
-public class Player : Entity 
+public class Player : Entity
 {
-    [SerializeField] private InputReader inputReader;
-    [SerializeField] private PlayerStateMachine stateMachine;
+    [SerializeField] private InputReader _inputReader;
+    [SerializeField] private PlayerStateMachine _stateMachine;
     [field: SerializeField] public PlayerConfiguration Configuration { get; private set; }
 
     #region Inputs
     public Vector2 MoveInput { get; private set; }
     private void OnMoveInput(Vector2 _input) => MoveInput = _input;
     public bool ShootInput { get; private set; }
-    private void OnShootInput() {
+    private void OnShootInput()
+    {
         ShootInput = true;
         ShootInputReleased = false;
     }
     public bool ShootInputReleased { get; private set; }
-    private void OnShootInputCancelled() {
+    private void OnShootInputCancelled()
+    {
         ShootInput = false;
         ShootInputReleased = true;
     }
@@ -23,66 +25,67 @@ public class Player : Entity
     private void SetIsGamepad(bool _isGamepad) => IsGamepad = _isGamepad;
     #endregion
 
-    protected override void OnEnable() 
+    protected override void OnEnable()
     {
         base.OnEnable();
-        inputReader.OnMoveEvent += OnMoveInput;
-        inputReader.OnShootEvent += OnShootInput;
-        inputReader.OnShootCancelledEvent += OnShootInputCancelled;
+        _inputReader.OnMoveEvent += OnMoveInput;
+        _inputReader.OnShootEvent += OnShootInput;
+        _inputReader.OnShootCancelledEvent += OnShootInputCancelled;
         InputReader.OnInputDeviceChanged += SetIsGamepad;
     }
 
-    protected override void Awake() 
+    protected override void Awake()
     {
         base.Awake();
     }
 
-    protected override void Start() 
+    protected override void Start()
     {
         base.Start();
-        stateMachine.Configure(this);
-        stateMachine.Initialize();
+        _stateMachine.Configure(this);
+        _stateMachine.Initialize();
     }
 
-    protected override void UpdateStep() 
+    protected override void UpdateStep()
     {
         base.UpdateStep();
-        stateMachine.Step();
+        _stateMachine.Step();
         if (!IsGamepad) RotateTowardsMouse();
     }
 
-    protected override void LateUpdateStep() 
+    protected override void LateUpdateStep()
     {
         base.LateUpdateStep();
-        stateMachine.LateStep();
+        _stateMachine.LateStep();
     }
 
-    protected override void FixedUpdateStep() 
+    protected override void FixedUpdateStep()
     {
         base.FixedUpdateStep();
-        stateMachine.PhysicsStep();
+        _stateMachine.PhysicsStep();
     }
 
-    protected override void OnDisable() 
+    protected override void OnDisable()
     {
         base.OnDisable();
-        inputReader.OnMoveEvent -= OnMoveInput;
-        inputReader.OnShootEvent -= OnShootInput;
-        inputReader.OnShootCancelledEvent -= OnShootInputCancelled;
+        _inputReader.OnMoveEvent -= OnMoveInput;
+        _inputReader.OnShootEvent -= OnShootInput;
+        _inputReader.OnShootCancelledEvent -= OnShootInputCancelled;
         InputReader.OnInputDeviceChanged -= SetIsGamepad;
     }
 
     public void Move(Vector3 _nextPosition) => transform.position = _nextPosition;
 
-    private void RotateTowardsMouse() 
+    private void RotateTowardsMouse()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, LayerMask.GetMask("Ground"))) 
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, LayerMask.GetMask("Ground")))
         {
             Vector3 targetPosition = hitInfo.point;
             targetPosition.y = transform.position.y;
             Vector3 direction = (targetPosition - transform.position).normalized;
-            if (direction != Vector3.zero) {
+            if (direction != Vector3.zero)
+            {
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
                 transform.rotation = lookRotation;
             }

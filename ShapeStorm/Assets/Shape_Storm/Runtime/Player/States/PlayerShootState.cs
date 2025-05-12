@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerShootState : PlayerMovementState
 {
-    [SerializeField] private Transform shootPoint;
-    private bool canShoot = true;
-    private float shootTimer = 0f;
+    [SerializeField] private Transform _shootPoint;
+    private bool _canShoot = true;
+    private float _shootTimer = 0f;
 
     private PoolService _poolService;
 
@@ -16,9 +16,9 @@ public class PlayerShootState : PlayerMovementState
 
     public override void CheckTransitions()
     {
-        if (stateMachine.Player.ShootInputReleased)
+        if (_stateMachine.Player.ShootInputReleased)
         {
-            stateMachine.SetState(stateMachine.Player.MoveInput == Vector2.zero ? typeof(PlayerIdleState) : typeof(PlayerMovementState));
+            _stateMachine.SetState(_stateMachine.Player.MoveInput == Vector2.zero ? typeof(PlayerIdleState) : typeof(PlayerMovementState));
         }
     }
 
@@ -30,26 +30,26 @@ public class PlayerShootState : PlayerMovementState
 
     private void HandleShooting()
     {
-        if (!canShoot)
+        if (!_canShoot)
         {
-            shootTimer -= Time.deltaTime;
-            if (shootTimer <= 0f) canShoot = true;
+            _shootTimer -= Time.deltaTime;
+            if (_shootTimer <= 0f) _canShoot = true;
             return;
         }
-        if (stateMachine.Player.ShootInput) Shoot();
+        if (_stateMachine.Player.ShootInput) Shoot();
     }
 
     private void Shoot()
     {
         PlayerProjectile projectile = _poolService.PlayerProjectiles.Get();
         //TODO: Arreglar este hardcodeo.
-        projectile.SetBullet(25f,
-                            3,
-                            3f,
-                            shootPoint.position,
-                            shootPoint.rotation,
+        projectile.SetBullet(_stateMachine.Player.Configuration.projectileSpeed,
+                            _stateMachine.Player.Configuration.projectileDamage,
+                            _stateMachine.Player.Configuration.projectileLifeTime,
+                            _shootPoint.position,
+                            _shootPoint.rotation,
                             () => _poolService.PlayerProjectiles.ReturnToPool(projectile));
-        canShoot = false;
-        shootTimer = stateMachine.Player.Configuration.ShootCadency;
+        _canShoot = false;
+        _shootTimer = _stateMachine.Player.Configuration.shootCadency;
     }
 }

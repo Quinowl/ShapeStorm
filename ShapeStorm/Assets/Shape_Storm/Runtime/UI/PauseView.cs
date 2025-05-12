@@ -1,47 +1,47 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ShapeStorm.Scripts.UI {
-    public class PauseView : MonoBehaviour 
+namespace ShapeStorm.Scripts.UI
+{
+    public class PauseView : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup _canvasGroup;
+        [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _settingsButton;
+        [SerializeField] private Button _menuButton;
 
-        [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private Button resumeButton;
-        [SerializeField] private Button settingsButton;
-        [SerializeField] private Button menuButton;
-
-        private GameMenuMediator mediator;
+        private GameMenuMediator _mediator;
 
         void Start() => InitializeButtons();
 
-        public void Configure(GameMenuMediator _menuMediator) => mediator = _menuMediator;
+        public void Configure(GameMenuMediator _menuMediator) => _mediator = _menuMediator;
 
-        public void Show() 
+        public void Show()
         {
-            canvasGroup.Toggle(true);
-            mediator.UpdateEventSystemObject(resumeButton.gameObject);
+            _canvasGroup.Toggle(true);
+            _mediator.UpdateEventSystemObject(_resumeButton.gameObject);
         }
 
-        public void Hide() => canvasGroup.Toggle(false);
+        public void Hide() => _canvasGroup.Toggle(false);
 
-        private void InitializeButtons() 
+        private void InitializeButtons()
         {
-            resumeButton.onClick.RemoveAllListeners();
-            settingsButton.onClick.RemoveAllListeners();
-            menuButton.onClick.RemoveAllListeners();
+            _resumeButton.onClick.RemoveAllListeners();
+            _settingsButton.onClick.RemoveAllListeners();
+            _menuButton.onClick.RemoveAllListeners();
         }
 
-        private void OnResumeButton() 
-        {
-
-        }
-
-        private void OnSettingsButton() 
+        private void OnResumeButton()
         {
 
         }
 
-        private void OnMenuButton() 
+        private void OnSettingsButton()
+        {
+
+        }
+
+        private void OnMenuButton()
         {
 
         }

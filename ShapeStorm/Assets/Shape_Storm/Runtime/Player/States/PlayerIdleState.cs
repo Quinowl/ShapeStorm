@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class PlayerIdleState : PlayerState 
+public class PlayerIdleState : PlayerState
 {
 
     public override void StateEnter() { }
     public override void StateInputs() { }
-    public override void CheckTransitions() 
+    public override void CheckTransitions()
     {
-        if (stateMachine.Player.MoveInput != Vector2.zero) stateMachine.SetState(typeof(PlayerMovementState));
-        if (stateMachine.Player.ShootInput) stateMachine.SetState(typeof(PlayerShootState));
+        if (_stateMachine.Player.MoveInput != Vector2.zero) _stateMachine.SetState(typeof(PlayerMovementState));
+        if (_stateMachine.Player.ShootInput) _stateMachine.SetState(typeof(PlayerShootState));
     }
     public override void StateStep() { }
     public override void StateLateStep() { }

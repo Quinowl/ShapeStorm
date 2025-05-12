@@ -1,15 +1,15 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Configurations/Player Configuration")]
-public class PlayerConfiguration : ScriptableObject 
+public class PlayerConfiguration : ScriptableObject
 {
     [Header("Movement fields")]
-    [SerializeField] private float speed = 3f;
-    public float Speed => speed;
+    public float speed = 3f;
 
     [Header("Shoot fields")]
-    [SerializeField] private float shootCadency = 0.5f;
-    public float ShootCadency => shootCadency;
-    [SerializeField] private BaseProjectile projectilePrefab;
-    public BaseProjectile ProjectilePrefab => projectilePrefab;
+    public float shootCadency = 0.5f;
+    public BaseProjectile projectilePrefab;
+    public float projectileSpeed;
+    public int projectileDamage;
+    public float projectileLifeTime;
 }
