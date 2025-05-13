@@ -6,6 +6,9 @@ public class PlayerConfiguration : ScriptableObject
     [Header("Movement fields")]
     public float speed = 3f;
 
+    [Header("Combat fields")]
+    public float invulnerabilityTimeAfterTakeDamage = 1f;
+
     [Header("Shoot fields")]
     public float shootCadency = 0.5f;
     public BaseProjectile projectilePrefab;
