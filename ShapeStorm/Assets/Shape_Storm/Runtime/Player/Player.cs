@@ -61,7 +61,7 @@ public class Player : Entity
     {
         base.LateUpdateStep();
         _stateMachine.LateStep();
-        _cameraService.FollowTarget();
+        _cameraService.FollowTarget(MoveInput);
     }
 
     protected override void FixedUpdateStep()

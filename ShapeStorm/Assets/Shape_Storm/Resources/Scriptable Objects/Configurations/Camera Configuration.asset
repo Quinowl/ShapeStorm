@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5fd75532586341eeba8905a5694f616, type: 3}
   m_Name: Camera Configuration
   m_EditorClassIdentifier: 
-  speed: 5
-  fovChangeSmoothTim: 0.4
-  baseFOV: 60
-  maxFOV: 70
+  offset: {x: 0, y: 10, z: -5}
+  followSmoothTime: 0.1
+  zoomOutAmount: 10
+  zoomSmoothSpeed: 4
