@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f03dd1862e54855a81051be625ea4d, type: 3}
-  m_Name: PlayerProjectilesPoolData
+  m_Script: {fileID: 11500000, guid: ec11993f008ab465d84f7e3c5e050c5c, type: 3}
+  m_Name: Spinner Enemy Configuration
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2695109220014173776, guid: 32b6657bd3a7a4273b32ef4fef7c0fb3, type: 3}
-  initialSize: 15
+  shootCadency: 0.2
+  destroyableProjectileProb: 0.5
+  projectileSpeed: 5
+  projectileDamage: 3
+  projectileLifeTime: 3
+  moveSpeed: 3
+  rotationSpeed: 30
+  stoppingDistance: 10

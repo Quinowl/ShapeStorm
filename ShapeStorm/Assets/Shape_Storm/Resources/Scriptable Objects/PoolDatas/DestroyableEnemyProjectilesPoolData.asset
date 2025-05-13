@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DestroyableEnemyProjectilesPoolData
   m_EditorClassIdentifier: 
   prefab: {fileID: 2695109220014173776, guid: 51a8a92b364bb4aa3b695859028fe95e, type: 3}
-  initialSize: 8
+  initialSize: 100
